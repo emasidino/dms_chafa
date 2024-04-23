@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  db_source:
+    image: postgres:latest
+    container_name: db_source
+    environment:
+      POSTGRES_DB: base1
+      POSTGRES_USER: base1_usr
+      POSTGRES_PASSWORD: riendel22
+    ports:
+      - "5432:5432"  # Puerto para acceder a la base de datos desde el host
+    networks:
+      - postgres_network
+
+  db_destination:
+    image: postgres:latest
+    container_name: db_destination
+    environment:
+      POSTGRES_DB: base2
+      POSTGRES_USER: base2_usr
+      POSTGRES_PASSWORD: riendel22
+    ports:
+      - "5433:5432"  # Puerto para acceder a la base de datos desde el host
+    networks:
+      - postgres_network
+
+networks:
+  postgres_network:
